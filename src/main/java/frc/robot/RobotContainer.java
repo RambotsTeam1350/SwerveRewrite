@@ -16,7 +16,10 @@ public class RobotContainer {
 
         this.m_Drivetrain = new Drivetrain();
 
-        this.m_Drive = new Drive(this.m_driver, this.m_Drivetrain);
+        this.m_Drive = new Drive(this.m_Drivetrain,
+                () -> this.m_driver.getLeftX(),
+                () -> this.m_driver.getLeftY(),
+                () -> this.m_driver.getRightX());
 
         this.m_Drivetrain.setDefaultCommand(m_Drive);
 

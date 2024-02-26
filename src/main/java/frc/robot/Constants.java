@@ -9,15 +9,21 @@ public class Constants {
     public static final class Controllers {
         public static final class Driver {
             public static final int kPort = 0;
-            public static final double kDeadband = 0.05;
+            public static final double kTranslationDeadband = 0.05;
+            public static final double kRotationDeadband = 0.1;
         }
     }
 
     public static final class Swerve {
+        public static final class MaxSpeeds {
+            public static final double kTranslation = 4.5; // m/s
+            public static final double kRotation = Math.PI; // rad/s
+        }
+
         public static final class SlewRateLimits {
-            public static final double kForwardsSlewRateLimit = 0.05;
-            public static final double kStrafeSlewRateLimit = 0.05;
-            public static final double kRotateClockwiseSlewRateLimit = 0.05;
+            public static final double kForwardsSlewRateLimit = 4;
+            public static final double kStrafeSlewRateLimit = 4;
+            public static final double kRotateSlewRateLimit = 6;
         }
 
         public static final class CurrentLimits {
@@ -28,6 +34,8 @@ public class Constants {
         public static final class Drive {
             public static final double kGearRatio = (36.0 / 14.0) * (18.0 / 24.0) * (45.0 / 15.0);
             public static final double kWheelDiameter = 0.096706557;
+            public static final double kRevolutionsToMeters = ((kWheelDiameter * Math.PI) / kGearRatio);
+            public static final double kRPMtoMPS = kRevolutionsToMeters / 60.0;
             public static final double kTrackWidth = Units.inchesToMeters(25.5);
             public static final double kWheelBase = Units.inchesToMeters(25.5);
         }
@@ -35,13 +43,18 @@ public class Constants {
         public static final class Angle {
             public static final double kP = 0.005;
             public static final double kGearRatio = (50.0 / 14.0) * (72.0 / 14.0);
+            public static final double kRevolutionsToDegrees = 360.0 / kGearRatio;
         }
 
-        public static final SwerveDriveKinematics kSwerveDriveKinematics = new SwerveDriveKinematics(
+        public static final Translation2d[] kModuleTranslations = {
                 new Translation2d(Drive.kWheelBase / 2.0, Drive.kTrackWidth / 2.0),
                 new Translation2d(Drive.kWheelBase / 2.0, -Drive.kTrackWidth / 2.0),
                 new Translation2d(-Drive.kWheelBase / 2.0, Drive.kTrackWidth / 2.0),
-                new Translation2d(-Drive.kWheelBase / 2.0, -Drive.kTrackWidth / 2.0));
+                new Translation2d(-Drive.kWheelBase / 2.0, -Drive.kTrackWidth / 2.0) };
+        public static final SwerveDriveKinematics kSwerveDriveKinematics = new SwerveDriveKinematics(
+                kModuleTranslations);
+
+        public static final int kMXP = 0;
 
         public static final class FL {
             public static final int kDriveMotorID = 41;
@@ -69,6 +82,13 @@ public class Constants {
             public static final int kAngleMotorID = 22;
             public static final int kAngleAbsoluteEncoderID = 2;
             public static final double kAngleAbsoluteEncoderOffset = 0.0;
+        }
+
+        public enum ModulePosition {
+            FL,
+            FR,
+            RL,
+            RR
         }
     }
 }
