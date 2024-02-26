@@ -21,9 +21,9 @@ public class Constants {
         }
 
         public static final class SlewRateLimits {
-            public static final double kForwardsSlewRateLimit = 4;
-            public static final double kStrafeSlewRateLimit = 4;
-            public static final double kRotateSlewRateLimit = 6;
+            public static final double kForwardsSlewRateLimit = 2;
+            public static final double kStrafeSlewRateLimit = 2;
+            public static final double kRotateSlewRateLimit = 3;
         }
 
         public static final class CurrentLimits {
@@ -54,15 +54,13 @@ public class Constants {
         public static final SwerveDriveKinematics kSwerveDriveKinematics = new SwerveDriveKinematics(
                 kModuleTranslations);
 
-        public static final int kMXP = 0;
-
         public static final class FL {
             public static final int kDriveMotorID = 41;
             public static final int kAngleMotorID = 42;
             public static final boolean kDriveInvert = false;
             public static final boolean kAngleInvert = false;
             public static final int kAngleAbsoluteEncoderID = 4;
-            public static final double kAngleAbsoluteEncoderOffset = 0.246094 * 360;
+            public static final double kAngleAbsoluteEncoderOffset = -0.248779 * 360.0;
         }
 
         public static final class FR {
@@ -71,7 +69,7 @@ public class Constants {
             public static final boolean kDriveInvert = false;
             public static final boolean kAngleInvert = false;
             public static final int kAngleAbsoluteEncoderID = 3;
-            public static final double kAngleAbsoluteEncoderOffset = 0.629150 * 360;
+            public static final double kAngleAbsoluteEncoderOffset = -0.372559 * 360.0;
         }
 
         public static final class RL {
@@ -80,7 +78,7 @@ public class Constants {
             public static final boolean kDriveInvert = false;
             public static final boolean kAngleInvert = false;
             public static final int kAngleAbsoluteEncoderID = 1;
-            public static final double kAngleAbsoluteEncoderOffset = 0.821289 * 360;
+            public static final double kAngleAbsoluteEncoderOffset = 0.325195 * 360.0;
         }
 
         public static final class RR {
@@ -89,7 +87,7 @@ public class Constants {
             public static final boolean kDriveInvert = false;
             public static final boolean kAngleInvert = false;
             public static final int kAngleAbsoluteEncoderID = 2;
-            public static final double kAngleAbsoluteEncoderOffset = 0.612061 * 360;
+            public static final double kAngleAbsoluteEncoderOffset = 0.109131 * 360.0;
         }
 
         public enum ModulePosition {

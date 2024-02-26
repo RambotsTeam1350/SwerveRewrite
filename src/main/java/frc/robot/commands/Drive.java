@@ -31,7 +31,7 @@ public class Drive extends Command {
         this.inputRot = rotationInput;
 
         // Tell the CommandBase that this command uses the drivetrain
-        addRequirements(drivetrain);
+        addRequirements(this.drivetrain);
     }
 
     // Called when the command is initially scheduled.

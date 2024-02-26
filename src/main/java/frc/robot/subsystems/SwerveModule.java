@@ -86,7 +86,7 @@ public class SwerveModule extends SubsystemBase {
     }
 
     public void resetAngleRelativeEncoderToAbsolute() {
-        double angle = this.m_angleAbsoluteEncoder.getAbsolutePosition().getValueAsDouble() * 360
+        double angle = (this.m_angleAbsoluteEncoder.getAbsolutePosition().getValueAsDouble() * 360.0)
                 - this.m_angleAbsoluteEncoderOffset;
         this.m_angleRelativeEncoder.setPosition(angle);
     }
@@ -176,7 +176,7 @@ public class SwerveModule extends SubsystemBase {
         }
 
         // Point turning motor at the target angle
-        turnToDegrees(m_state.angle.getDegrees());
+        turnToDegrees(this.m_state.angle.getDegrees());
     }
 
     /**
@@ -239,18 +239,6 @@ public class SwerveModule extends SubsystemBase {
             newAngle += 360;
 
         return newAngle;
-    }
-
-    public void setDriveMotor(double speed) {
-        this.m_driveMotor.set(speed);
-    }
-
-    public void setAngleMotor(double speed) {
-        this.m_angleMotor.set(speed);
-    }
-
-    public double getAngleAbsoluteEncoder() {
-        return this.m_angleAbsoluteEncoder.getPosition().getValueAsDouble() * 360.0;
     }
 
     @Override // Called every 20ms
