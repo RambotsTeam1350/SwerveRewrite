@@ -8,7 +8,7 @@ import com.revrobotics.RelativeEncoder;
 public class SwerveModule {
     private final CANSparkMax m_driveMotor;
     private final CANSparkMax m_angleMotor;
-    
+
     private final RelativeEncoder m_driveRelativeEncoder;
     private final RelativeEncoder m_angleRelativeEncoder;
 
@@ -17,7 +17,7 @@ public class SwerveModule {
     public SwerveModule(int driveMotorID, int angleMotorID, int absoluteEncoderID, double absoluteEncoderOffset) {
         this.m_driveMotor = new CANSparkMax(driveMotorID, MotorType.kBrushless);
         this.m_angleMotor = new CANSparkMax(angleMotorID, MotorType.kBrushless);
-        
+
         this.m_driveRelativeEncoder = this.m_driveMotor.getEncoder();
         this.m_angleRelativeEncoder = this.m_angleMotor.getEncoder();
 
@@ -33,6 +33,6 @@ public class SwerveModule {
     }
 
     public double getAngleAbsoluteEncoder() {
-        return this.m_angleAbsoluteEncoder.getPosition().getValueAsDouble() * 180.0;
+        return this.m_angleAbsoluteEncoder.getPosition().getValueAsDouble() * 360.0;
     }
 }
