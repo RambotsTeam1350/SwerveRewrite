@@ -40,12 +40,16 @@ public class Drivetrain extends SubsystemBase {
 
     public Drivetrain() {
         this.m_FL = new SwerveModule(0, Constants.Swerve.FL.kDriveMotorID, Constants.Swerve.FL.kAngleMotorID,
+                Constants.Swerve.FL.kDriveInvert, Constants.Swerve.FL.kAngleInvert,
                 Constants.Swerve.FL.kAngleAbsoluteEncoderID, Constants.Swerve.FL.kAngleAbsoluteEncoderOffset);
         this.m_FR = new SwerveModule(1, Constants.Swerve.FR.kDriveMotorID, Constants.Swerve.FR.kAngleMotorID,
+                Constants.Swerve.FR.kDriveInvert, Constants.Swerve.FR.kAngleInvert,
                 Constants.Swerve.FR.kAngleAbsoluteEncoderID, Constants.Swerve.FR.kAngleAbsoluteEncoderOffset);
         this.m_RL = new SwerveModule(2, Constants.Swerve.RL.kDriveMotorID, Constants.Swerve.RL.kAngleMotorID,
+                Constants.Swerve.RL.kDriveInvert, Constants.Swerve.RL.kAngleInvert,
                 Constants.Swerve.RL.kAngleAbsoluteEncoderID, Constants.Swerve.RL.kAngleAbsoluteEncoderOffset);
         this.m_RR = new SwerveModule(3, Constants.Swerve.RR.kDriveMotorID, Constants.Swerve.RR.kAngleMotorID,
+                Constants.Swerve.RR.kDriveInvert, Constants.Swerve.RR.kAngleInvert,
                 Constants.Swerve.RR.kAngleAbsoluteEncoderID, Constants.Swerve.RR.kAngleAbsoluteEncoderOffset);
 
         this.m_gyro = new AHRS(SPI.Port.kMXP, (byte) 200);

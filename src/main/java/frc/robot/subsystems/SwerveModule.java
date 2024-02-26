@@ -12,13 +12,18 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class SwerveModule {
+public class SwerveModule extends SubsystemBase {
     private int m_moduleNumber;
 
     private final CANSparkMax m_driveMotor;
     private final CANSparkMax m_angleMotor;
+
+    private final boolean m_driveMotorInvert;
+    private final boolean m_angleMotorInvert;
 
     private final RelativeEncoder m_driveRelativeEncoder;
     private final RelativeEncoder m_angleRelativeEncoder;
@@ -32,17 +37,20 @@ public class SwerveModule {
     private SwerveModuleState m_state;
     private Pose2d m_pose;
 
-    public SwerveModule(int moduleNumber, int driveMotorID, int angleMotorID, int angleAbsoluteEncoderID,
+    public SwerveModule(int moduleNumber, int driveMotorID, int angleMotorID, boolean driveMotorInvert,
+            boolean angleMotorInvert, int angleAbsoluteEncoderID,
             double angleAbsoluteEncoderOffset) {
 
         this.m_moduleNumber = moduleNumber;
+        this.m_driveMotorInvert = driveMotorInvert;
+        this.m_angleMotorInvert = angleMotorInvert;
         this.m_driveMotor = new CANSparkMax(driveMotorID, CANSparkLowLevel.MotorType.kBrushless);
         this.m_driveMotor.restoreFactoryDefaults();
         this.m_driveMotor.setSmartCurrentLimit(45);
         this.m_driveMotor.getPIDController().setFF(0.0);
         this.m_driveMotor.getPIDController().setP(0.2);
         this.m_driveMotor.getPIDController().setI(0.0);
-        // this.m_driveMotor.setInverted(driveMotorInverted);
+        this.m_driveMotor.setInverted(this.m_driveMotorInvert);
         this.m_driveMotor.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus0, 100);
         this.m_driveMotor.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus1, 20);
         this.m_driveMotor.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus2, 20);
@@ -55,7 +63,7 @@ public class SwerveModule {
         this.m_angleMotor.getPIDController().setFF(0.0);
         this.m_angleMotor.getPIDController().setP(0.2);
         this.m_angleMotor.getPIDController().setI(0.0);
-        // this.m_angleMotor.setInverted(turningMotorInverted);
+        this.m_angleMotor.setInverted(this.m_angleMotorInvert);
         this.m_angleMotor.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus0, 100);
         this.m_angleMotor.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus1, 20);
         this.m_angleMotor.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus2, 20);
@@ -79,7 +87,7 @@ public class SwerveModule {
 
     public void resetAngleRelativeEncoderToAbsolute() {
         double angle = this.m_angleAbsoluteEncoder.getAbsolutePosition().getValueAsDouble() * 360
-                + this.m_angleAbsoluteEncoderOffset;
+                - this.m_angleAbsoluteEncoderOffset;
         this.m_angleRelativeEncoder.setPosition(angle);
     }
 
@@ -243,5 +251,13 @@ public class SwerveModule {
 
     public double getAngleAbsoluteEncoder() {
         return this.m_angleAbsoluteEncoder.getPosition().getValueAsDouble() * 360.0;
+    }
+
+    @Override // Called every 20ms
+    public void periodic() {
+        // Prints the position of the swerve module heading in degrees
+        SmartDashboard.putNumber("Module " + this.m_moduleNumber + " Position", getHeadingDegrees());
+        // Prints the speed of the swerve module
+        SmartDashboard.putNumber("Module " + this.m_moduleNumber + " Speed", getDriveMetersPerSecond());
     }
 }

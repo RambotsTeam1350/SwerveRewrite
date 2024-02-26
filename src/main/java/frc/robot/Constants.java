@@ -59,29 +59,37 @@ public class Constants {
         public static final class FL {
             public static final int kDriveMotorID = 41;
             public static final int kAngleMotorID = 42;
+            public static final boolean kDriveInvert = false;
+            public static final boolean kAngleInvert = false;
             public static final int kAngleAbsoluteEncoderID = 4;
-            public static final double kAngleAbsoluteEncoderOffset = 0.0;
+            public static final double kAngleAbsoluteEncoderOffset = 0.246094 * 360;
         }
 
         public static final class FR {
             public static final int kDriveMotorID = 31;
             public static final int kAngleMotorID = 32;
+            public static final boolean kDriveInvert = false;
+            public static final boolean kAngleInvert = false;
             public static final int kAngleAbsoluteEncoderID = 3;
-            public static final double kAngleAbsoluteEncoderOffset = 0.0;
+            public static final double kAngleAbsoluteEncoderOffset = 0.629150 * 360;
         }
 
         public static final class RL {
             public static final int kDriveMotorID = 11;
             public static final int kAngleMotorID = 12;
+            public static final boolean kDriveInvert = false;
+            public static final boolean kAngleInvert = false;
             public static final int kAngleAbsoluteEncoderID = 1;
-            public static final double kAngleAbsoluteEncoderOffset = 0.0;
+            public static final double kAngleAbsoluteEncoderOffset = 0.821289 * 360;
         }
 
         public static final class RR {
             public static final int kDriveMotorID = 21;
             public static final int kAngleMotorID = 22;
+            public static final boolean kDriveInvert = false;
+            public static final boolean kAngleInvert = false;
             public static final int kAngleAbsoluteEncoderID = 2;
-            public static final double kAngleAbsoluteEncoderOffset = 0.0;
+            public static final double kAngleAbsoluteEncoderOffset = 0.612061 * 360;
         }
 
         public enum ModulePosition {
