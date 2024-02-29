@@ -6,6 +6,7 @@ import frc.robot.Constants.Swerve.ModulePosition;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.ctre.phoenix6.hardware.Pigeon2;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.math.MathUtil;
@@ -27,7 +28,8 @@ public class Drivetrain extends SubsystemBase {
     private final SwerveModule m_RL;
     private final SwerveModule m_RR;
 
-    private final AHRS m_gyro;
+    // private final AHRS m_gyro;
+    private final Pigeon2 m_gyro;
 
     private final HashMap<ModulePosition, SwerveModule> m_swerveModulesToPositions;
     private SwerveDriveOdometry m_odometry;
@@ -52,7 +54,7 @@ public class Drivetrain extends SubsystemBase {
                 Constants.Swerve.RR.kDriveInvert, Constants.Swerve.RR.kAngleInvert,
                 Constants.Swerve.RR.kAngleAbsoluteEncoderID, Constants.Swerve.RR.kAngleAbsoluteEncoderOffset);
 
-        this.m_gyro = new AHRS(SPI.Port.kMXP, (byte) 200);
+        this.m_gyro = new Pigeon2(10);
         this.m_gyro.reset();
 
         this.m_swerveModulesToPositions = new HashMap<>(
