@@ -64,20 +64,20 @@ public class Constants {
         }
 
         public static final class FR {
-            public static final int kDriveMotorID = 31;
-            public static final int kAngleMotorID = 32;
-            public static final boolean kDriveInvert = false;
-            public static final boolean kAngleInvert = false;
-            public static final int kAngleAbsoluteEncoderID = 3;
-            public static final double kAngleAbsoluteEncoderOffset = -0.372559 * 360.0;
-        }
-
-        public static final class RL {
             public static final int kDriveMotorID = 11;
             public static final int kAngleMotorID = 12;
             public static final boolean kDriveInvert = false;
             public static final boolean kAngleInvert = false;
             public static final int kAngleAbsoluteEncoderID = 1;
+            public static final double kAngleAbsoluteEncoderOffset = -0.372559 * 360.0;
+        }
+
+        public static final class RL {
+            public static final int kDriveMotorID = 31;
+            public static final int kAngleMotorID = 32;
+            public static final boolean kDriveInvert = false;
+            public static final boolean kAngleInvert = false;
+            public static final int kAngleAbsoluteEncoderID = 3;
             public static final double kAngleAbsoluteEncoderOffset = 0.325195 * 360.0;
         }
 
