@@ -28,22 +28,22 @@ public final class Constants {
 
   public static final class SwerveConstants{
     //Drivetrain motor/encoder IDs
-    public static final int LEFT_FRONT_DRIVE_ID = 1;
-    public static final int RIGHT_FRONT_DRIVE_ID = 2;
-    public static final int LEFT_BACK_DRIVE_ID = 3;
-    public static final int RIGHT_BACK_DRIVE_ID = 4;
+    public static final int LEFT_FRONT_DRIVE_ID = 35;
+    public static final int RIGHT_FRONT_DRIVE_ID = 11;
+    public static final int LEFT_BACK_DRIVE_ID = 31;
+    public static final int RIGHT_BACK_DRIVE_ID = 21;
     
-    public static final int LEFT_FRONT_TURN_ID = 5;
-    public static final int RIGHT_FRONT_TURN_ID = 6;
-    public static final int LEFT_BACK_TURN_ID = 7;
-    public static final int RIGHT_BACK_TURN_ID = 8;
+    public static final int LEFT_FRONT_TURN_ID = 36;
+    public static final int RIGHT_FRONT_TURN_ID = 12;
+    public static final int LEFT_BACK_TURN_ID = 32;
+    public static final int RIGHT_BACK_TURN_ID = 22;
     
-    public static final int LEFT_FRONT_CANCODER_ID = 11;
-    public static final int RIGHT_FRONT_CANCODER_ID = 12;
-    public static final int LEFT_BACK_CANCODER_ID = 13;
-    public static final int RIGHT_BACK_CANCODER_ID = 14;
+    public static final int LEFT_FRONT_CANCODER_ID = 3;
+    public static final int RIGHT_FRONT_CANCODER_ID = 1;
+    public static final int LEFT_BACK_CANCODER_ID = 3;
+    public static final int RIGHT_BACK_CANCODER_ID = 2;
 
-    public static final int PIGEON_ID = 15;
+    public static final int PIGEON_ID = 10;
 
     //Drivetrain characteristics
     public static final double LEFT_FRONT_OFFSET = -0.415; //change
@@ -64,8 +64,8 @@ public final class Constants {
     public static final double DRIVETRAIN_MAX_ANGULAR_SPEED = 3.5 * Math.PI;
 
     //Swerve Kinematics
-    public static final double TRACK_WIDTH = Units.inchesToMeters(18.75);
-    public static final double WHEEL_BASE = Units.inchesToMeters(18.75);
+    public static final double TRACK_WIDTH = Units.inchesToMeters(25.5);
+    public static final double WHEEL_BASE = Units.inchesToMeters(25.5);
     public static final double DRIVE_BASE_RADIUS = Math.sqrt(Math.pow(TRACK_WIDTH, 2) + Math.pow(WHEEL_BASE, 2)) / 2.0;
 
     public static final SwerveDriveKinematics DRIVE_KINEMATICS = new SwerveDriveKinematics(
