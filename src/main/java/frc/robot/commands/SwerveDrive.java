@@ -21,14 +21,15 @@ public class SwerveDrive extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     drivetrain.swerveDrive(
-        -RobotContainer.driverController.getLeftY(), 
-        -RobotContainer.driverController.getLeftX(), 
+        -RobotContainer.driverController.getLeftY(),
+        -RobotContainer.driverController.getLeftX(),
         -RobotContainer.driverController.getRightX(),
         !RobotContainer.driverController.getRawButton(XboxController.Button.kB.value),
         new Translation2d(),
