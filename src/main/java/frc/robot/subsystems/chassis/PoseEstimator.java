@@ -62,27 +62,24 @@ public class PoseEstimator {
 
     pigeon = new Pigeon2(pigeonId);
 
-    poseEstimator =
-        new SwerveDrivePoseEstimator(
-            chassis.kinematics,
-            Rotation2d.fromDegrees(getGyroRot()),
-            chassis.getPositions(),
-            new Pose2d(),
-            stateStdDevs,
-            visionStdDevs);
+    poseEstimator = new SwerveDrivePoseEstimator(
+        chassis.kinematics,
+        Rotation2d.fromDegrees(getGyroRot()),
+        chassis.getPositions(),
+        new Pose2d(),
+        stateStdDevs,
+        visionStdDevs);
 
     vel = new Transform2d();
     lastPose = new Pose2d();
 
     try {
-      aprilTagFieldLayout =
-          AprilTagFieldLayout.loadFromResource(AprilTagFields.k2024Crescendo.m_resourceFile);
+      aprilTagFieldLayout = AprilTagFieldLayout.loadFromResource(AprilTagFields.k2024Crescendo.m_resourceFile);
     } catch (IOException e) {
       System.err.println("Failed to load AprilTagFieldLayout");
     }
-    photonEstimator =
-        new PhotonPoseEstimator(
-            aprilTagFieldLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, ATCam1, robotToCam);
+    photonEstimator = new PhotonPoseEstimator(
+        aprilTagFieldLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, ATCam1, robotToCam);
   }
 
   public void update() {
@@ -103,9 +100,8 @@ public class PoseEstimator {
     poseEstimator.update(Rotation2d.fromDegrees(getGyroRot()), chassis.getPositions());
     Pose2d currentPose = poseEstimator.getEstimatedPosition();
     vel = currentPose.minus(lastPose); // Why is this robot relative?
-    vel =
-        new Transform2d(
-            vel.getTranslation().rotateBy(currentPose.getRotation()), vel.getRotation());
+    vel = new Transform2d(
+        vel.getTranslation().rotateBy(currentPose.getRotation()), vel.getRotation());
 
     lastPose = currentPose;
 
@@ -119,7 +115,8 @@ public class PoseEstimator {
     double latestTimestamp = ATCam1.getLatestResult().getTimestampSeconds();
     boolean newResult = Math.abs(latestTimestamp - lastEstTimestamp) > 1e-5;
 
-    if (newResult) lastEstTimestamp = latestTimestamp;
+    if (newResult)
+      lastEstTimestamp = latestTimestamp;
     return visionEst;
   }
 
@@ -142,19 +139,22 @@ public class PoseEstimator {
     double avgDist = 0;
     for (var tgt : targets) {
       var tagPose = photonEstimator.getFieldTags().getTagPose(tgt.getFiducialId());
-      if (tagPose.isEmpty()) continue;
+      if (tagPose.isEmpty())
+        continue;
       numTags++;
-      avgDist +=
-          tagPose.get().toPose2d().getTranslation().getDistance(estimatedPose.getTranslation());
+      avgDist += tagPose.get().toPose2d().getTranslation().getDistance(estimatedPose.getTranslation());
     }
-    if (numTags == 0) return estStdDevs;
+    if (numTags == 0)
+      return estStdDevs;
     avgDist /= numTags;
     // Decrease std devs if multiple targets are visible
-    if (numTags > 1) estStdDevs = multiTagStdDevs;
+    if (numTags > 1)
+      estStdDevs = multiTagStdDevs;
     // Increase std devs based on (average) distance
     if (numTags == 1 && avgDist > 4)
       estStdDevs = VecBuilder.fill(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
-    else estStdDevs = estStdDevs.times(1 + (avgDist * avgDist / 30));
+    else
+      estStdDevs = estStdDevs.times(1 + (avgDist * avgDist / 30));
 
     return estStdDevs;
   }
