@@ -15,12 +15,12 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.lib.drivers.PearadoxSparkMax;
+import frc.lib.drivers.ProblemChildCANSparkMAX;
 import frc.robot.Constants.SwerveConstants;
 
 public class SwerveModule extends SubsystemBase {
-  private PearadoxSparkMax driveMotor;
-  private PearadoxSparkMax turnMotor;
+  private ProblemChildCANSparkMAX driveMotor;
+  private ProblemChildCANSparkMAX turnMotor;
 
   private RelativeEncoder driveEncoder;
   private RelativeEncoder turnEncoder;
@@ -41,8 +41,9 @@ public class SwerveModule extends SubsystemBase {
 
     absoluteEncoder = new CANcoder(absoluteEncoderId);
 
-    driveMotor = new PearadoxSparkMax(driveMotorId, MotorType.kBrushless, IdleMode.kCoast, 45, driveMotorReversed);
-    turnMotor = new PearadoxSparkMax(turnMotorId, MotorType.kBrushless, IdleMode.kCoast, 25, turnMotorReversed);
+    driveMotor = new ProblemChildCANSparkMAX(driveMotorId, MotorType.kBrushless, IdleMode.kCoast, 45,
+        driveMotorReversed);
+    turnMotor = new ProblemChildCANSparkMAX(turnMotorId, MotorType.kBrushless, IdleMode.kCoast, 25, turnMotorReversed);
 
     driveEncoder = driveMotor.getEncoder();
     turnEncoder = turnMotor.getEncoder();
