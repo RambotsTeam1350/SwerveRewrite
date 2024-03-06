@@ -34,13 +34,13 @@ public final class Constants {
     // Drivetrain motor/encoder IDs
     public static final int LEFT_FRONT_DRIVE_ID = 11;
     public static final int RIGHT_FRONT_DRIVE_ID = 21;
-    public static final int LEFT_BACK_DRIVE_ID = 31;
-    public static final int RIGHT_BACK_DRIVE_ID = 35;
+    public static final int LEFT_BACK_DRIVE_ID = 35;
+    public static final int RIGHT_BACK_DRIVE_ID = 31;
 
     public static final int LEFT_FRONT_TURN_ID = 12;
     public static final int RIGHT_FRONT_TURN_ID = 22;
-    public static final int LEFT_BACK_TURN_ID = 32;
-    public static final int RIGHT_BACK_TURN_ID = 36;
+    public static final int LEFT_BACK_TURN_ID = 36;
+    public static final int RIGHT_BACK_TURN_ID = 32;
 
     public static final int LEFT_FRONT_CANCODER_ID = 1;
     public static final int RIGHT_FRONT_CANCODER_ID = 2;
@@ -50,14 +50,14 @@ public final class Constants {
     public static final int PIGEON_ID = 10;
 
     // Drivetrain characteristics
-    public static final double LEFT_FRONT_OFFSET = 0.059; // change
-    public static final double RIGHT_FRONT_OFFSET = -0.396; // change
-    public static final double LEFT_BACK_OFFSET = -0.329; // change
-    public static final double RIGHT_BACK_OFFSET = 0.286; // change
+    public static final double LEFT_FRONT_OFFSET = 0.059570; // change
+    public static final double RIGHT_FRONT_OFFSET = -0.392334; // change
+    public static final double LEFT_BACK_OFFSET = -0.328857; // change
+    public static final double RIGHT_BACK_OFFSET = 0.295166; // change
 
     public static final double WHEEL_DIAMETER = Units.inchesToMeters(4);
     public static final double DRIVE_MOTOR_GEAR_RATIO = 6.75;
-    public static final double TURN_MOTOR_GEAR_RATIO = 150.0 / 7;
+    public static final double TURN_MOTOR_GEAR_RATIO = 150.0 / 7.0;
     public static final double DRIVE_MOTOR_PCONVERSION = WHEEL_DIAMETER * Math.PI / DRIVE_MOTOR_GEAR_RATIO;
     public static final double TURN_MOTOR_PCONVERSION = 2 * Math.PI / TURN_MOTOR_GEAR_RATIO;
     public static final double DRIVE_MOTOR_VCONVERSION = DRIVE_MOTOR_PCONVERSION / 60.0;
